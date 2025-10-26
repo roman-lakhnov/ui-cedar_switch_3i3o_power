@@ -1,0 +1,87 @@
+@use './variables' as v;
+
+html {
+	font-size: v.rem(v.$font-size-base); // rem(16) => 1rem
+}
+
+body {
+	font-family: v.$font-family-base;
+	font-size: v.rem(v.$font-size-base);
+	line-height: v.$line-height-base;
+	color: v.color(text);
+	background: v.color(background);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Заголовки */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: v.color(text);
+	line-height: v.$heading-line-height;
+	margin: 0;
+	font-weight: 600;
+}
+
+h1 {
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 36px;
+}
+h2 {
+	font-size: 20px;
+	line-height: 28px;
+}
+h3 {
+	font-size: v.rem(20);
+}
+h4 {
+	font-size: v.rem(18);
+}
+h5 {
+	font-size: v.rem(16);
+}
+h6 {
+	font-size: v.rem(14);
+}
+
+p {
+	margin: 0;
+	color: v.color(muted);
+}
+
+/* Ссылки */
+a {
+	color: v.color(primary);
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+/* Code / Pre */
+code,
+kbd,
+samp {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono',
+		monospace;
+	font-size: v.rem(13);
+	background: v.color(surface);
+	padding: 0 v.rem(4);
+	border-radius: 4px;
+}
+
+pre {
+	font-family: inherit;
+	overflow: auto;
+	padding: v.rem(12);
+	border-radius: 8px;
+	// background: darken(v.color(surface), 2%);
+	code {
+		padding: 0;
+		background: transparent;
+	}
+}

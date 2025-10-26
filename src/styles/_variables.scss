@@ -1,0 +1,57 @@
+// src/styles/_variables.scss
+// Базовые переменные проекта
+
+// === Технические ===
+$base-font-size: 16; // в px — используем функцию rem() ниже (передаём числа: 14, 16, 20...)
+$container-max-width: 1200px;
+$gutter: 1rem;
+$border-radius: 8px;
+$transition-fast: 150ms;
+$transition-base: 250ms;
+
+// === Цвета (токены) ===
+$colors: (
+	primary: #3b82f6,
+	'primary-foreground': #ffffff,
+	background: #f8fafc,
+	surface: #ffffff,
+	text: #0f172a,
+	muted: #6b7280,
+	border: #e6edf3,
+	success: #10b981,
+	danger: #ef4444,
+	warning: #f59e0b
+);
+
+// Удобная функция для получения цвета
+@use 'sass:map';
+
+@function color($key) {
+	@return map.get($colors, $key);
+}
+
+// === Типография ===
+$font-family-base: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+	Roboto, 'Helvetica Neue', Arial;
+$font-size-base: 16; // px (используем с rem())
+$line-height-base: 1.5;
+$heading-line-height: 1.15;
+
+// === Брэйкпоинты ===
+$breakpoints: (
+	sm: 640px,
+	md: 768px,
+	lg: 1024px,
+	xl: 1280px
+);
+
+// === Z-index / Elevation ===
+$z-header: 1000;
+$z-modal: 1100;
+$z-tooltip: 1200;
+
+// === helper: rem() ===
+// Ожидает число в px (без единицы): rem(16) => 1rem
+@function rem($px) {
+	@return calc($px / $base-font-size) * 1rem;
+}
