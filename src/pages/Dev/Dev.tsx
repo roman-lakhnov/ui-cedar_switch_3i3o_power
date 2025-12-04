@@ -8,7 +8,7 @@ import {
 } from '@/utils/utils'
 import { useEffect, useState } from 'react'
 
-const Home = () => {
+const Dev = () => {
 	const [data, setData] = useState<DataType>({} as DataType)
 	const [form, setForm] = useState<DataType>({} as DataType)
 	const [createUser, setCreateUser] = useState<UserType>({} as UserType)
@@ -23,7 +23,7 @@ const Home = () => {
 	}, [data])
 
 	return (
-		<div className='page'>
+		<div className='container'>
 			<Header />
 			<h1>Endpoints</h1>
 			<section>
@@ -449,4 +449,4 @@ const Home = () => {
 	)
 }
 
-export default Home
+export default Dev

@@ -1,0 +1,46 @@
+@use '../abstracts/variables' as *;
+
+$font-family-base: ui-sans-serif, system-ui, sans-serif;
+$font-size-base: 14px;
+$font-weight-base: var(--w-regular);
+$line-height-base: 1.5;
+
+html {
+	font-family: $font-family-base;
+	font-size: $font-size-base;
+	font-weight: $font-weight-base;
+	line-height: $line-height-base;
+	color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	line-height: 1.2;
+}
+
+h1 {
+	font-size: 30px;
+	font-weight: 700;
+}
+h2 {
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 28px;
+}
+h3,
+h4,
+h5,
+h6 {
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	letter-spacing: -0.35px;
+}
+
+p {
+	color: var(--color-muted);
+}

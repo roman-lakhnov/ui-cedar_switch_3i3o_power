@@ -1,34 +1,27 @@
+@use '/src/styles/abstracts/variables' as *;
+
 .header {
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
 }
-.row {
+.logoRow {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: 16px;
-	a {
-		text-decoration: none;
-		color: inherit;
+	gap: 8px;
+	p {
+		font-size: 16px;
 	}
 }
 
 .logo {
 	height: 44px;
 	width: 44px;
-	border: 1px solid #ccc;
-	border-radius: 6px;
 	padding: 10px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	color: var(--color-black);
 }
 
-.logo:hover {
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.col {
+.headingCol {
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
@@ -42,35 +35,37 @@
 
 .link {
 	color: inherit;
-	padding: 0 16px;
+	height: 44px;
+	padding: 0 32px;
+	cursor: pointer;
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	height: 44px;
-	font-size: 14px;
 	font-weight: 500;
-	border: 1px solid #ccc;
-	border-radius: 6px;
-	cursor: pointer;
-	transition: background 0.2s ease, color 0.2s ease;
+	line-height: 20px;
 }
 
+.link,
+.logo {
+	border: var(--border);
+	border-radius: 6px;
+	transition: var(--transition-base) ease;
+
+	&:hover {
+		background-color: var(--color-gray);
+	}
+}
 
 .icon {
-  height: 16px;
+	height: 16px;
 	width: 16px;
 }
 
-.link:hover {
-  background: #e4e4e4;
-	text-decoration: none;
-}
-
 .clear {
-  background-color: #ee4444;
-  color: white;
+	background-color: #ee4444;
+	color: white;
 }
 
 .clear:hover {
-  background-color: #ee4444ce;
+	background-color: #ee4444ce;
 }

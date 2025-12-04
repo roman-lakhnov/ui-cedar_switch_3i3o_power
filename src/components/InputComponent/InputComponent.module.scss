@@ -1,0 +1,66 @@
+.input {
+	&.active {
+		border-color: var(--color-primary);
+	}
+	.heading,
+	.control {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.heading {
+		margin-bottom: 12px;
+		.signalIconWrapper {
+			padding: 8px;
+			border-radius: 50%;
+			background-color: var(--color-gray);
+			color: var(--color-muted);
+			&.active {
+				background-color: var(--color-primary);
+				color: var(--color-white);
+			}
+			.signalIcon {
+				width: 16px;
+				height: 16px;
+			}
+		}
+		h3 {
+			font-size: 18px;
+			font-weight: 600;
+			line-height: 28px;
+			flex-grow: 1;
+			letter-spacing: -0.6px;
+		}
+		.inputStatus {
+			font-size: 12px;
+			font-weight: 600;
+			letter-spacing: -0.6px;
+			line-height: 16px;
+			background-color: var(--color-gray);
+			padding: 2px 10px;
+			border-radius: 50px;
+			border: 1px solid var(--color-gray);
+
+			&.active {
+				background-color: var(--color-primary);
+				border-color: var(--color-primary);
+				color: var(--color-white);
+			}
+		}
+	}
+	.control {
+		.dot {
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background-color: var(--color-muted);
+
+			&.active {
+				background-color: var(--color-primary);
+			}
+		}
+		.inputInfo {
+			line-height: 20px;
+		}
+	}
+}

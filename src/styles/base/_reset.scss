@@ -1,0 +1,33 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	min-height: 100vh;
+}
+img,
+video,
+svg {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	background-color: transparent;
+}
+
+button {
+	background: none;
+	font: inherit;
+}

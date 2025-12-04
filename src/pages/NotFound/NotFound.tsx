@@ -1,12 +1,11 @@
-import Header from "@/components/Header/Header"
-
 const NotFound = () => {
-  return (
-  		<div className='page'>
-			<Header />
-			<h1>Not Found</h1>
+	return (
+		<div className='container'>
+			<main>
+				<h1>Page Not Found</h1>
+			</main>
 		</div>
-  )
+	)
 }
 
 export default NotFound

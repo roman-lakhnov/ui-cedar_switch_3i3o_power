@@ -1,0 +1,50 @@
+:root {
+	/* colors */
+	--color-primary: rgb(22 163 74);
+	--color-text: rgb(2 8 23);
+	--color-muted: rgb(100 116 139);
+	--color-white: rgb(255 255 255);
+	--color-bg: var(--color-white);
+	--color-border: rgb(226 232 240);
+	--color-gray: rgb(241 245 249);
+	--color-info: rgb(37 99 235);
+	--color-warning: rgb(250 204 21);
+	--color-danger: rgb(239 68 68);
+	--color-black: rgb(15, 23, 42);
+
+	/* shadow */
+	--shadow-rgb: 15, 23, 42;
+	--shadow-a: 0.1;
+	--drop-shadow-s: 0 4px 5px rgba(var(--shadow-rgb), var(--shadow-a));
+	--drop-shadow-m: 0 8px 10px rgba(var(--shadow-rgb), var(--shadow-a));
+	--drop-shadow-l: 0 12px 20px rgba(var(--shadow-rgb), var(--shadow-a));
+
+	--shadow-card: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+	--shadow-card-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+	/* fonts */
+	--w-regular: 400;
+	--w-medium: 500;
+	--w-semibold: 600;
+	--w-bold: 700;
+	--w-black: 900;
+
+	/* container */
+	--container-pad: clamp(16px, 3vw, 24px);
+	--container-width: 1152px;
+	--container-max: calc(var(--container-width) + var(--container-pad) * 2);
+	--section-space-l: 120px;
+	--section-space-m: 60px;
+	--section-space-s: 30px;
+
+	/* breakpoints */
+	--bp-s: 768px;
+	--bp-m: 1024px;
+	--bp-l: 1440px;
+
+	/* others */
+	--border: 1px solid var(--color-border);
+	--border-radius: 8px;
+	--transition-base: 250ms;
+	--transition-fast: 150ms;
+}

@@ -1,35 +1,45 @@
-@use './variables' as v;
-@use './mixins' as m;
-@use './reset';
-@use './typography';
+@use './abstracts/variables';
+@use './abstracts/mixins' as *;
+@use './base/reset';
+@use './base/fonts';
 @use './layout';
 
-* {
-	box-sizing: border-box;
-}
-
 html {
-	/* резервируем место под скроллбар всегда */
 	scrollbar-gutter: stable;
 }
 
 body {
-	background-color: #fff;
-	font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-	margin: 0;
+	background-color: var(--color-bg);
 }
 
-a {
-	// color: $primary-color;
-	text-decoration: none;
-	&:hover {
-		text-decoration: underline;
-	}
+main {
+	display: flex;
+	flex-direction: column;
+	padding-block: 24px;
+	gap: 24px;
+}
+
+section {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
 }
 
 .container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 1rem;
+	max-width: var(--container-max);
+	padding: var(--container-pad);
+	margin-inline: auto;
+}
+
+.card {
+	width: 100%;
+	background: var(--color-bg);
+	padding: 24px;
+	border: var(--border);
+	border-radius: var(--border-radius);
+	box-shadow: var(--shadow-card);
+	transition: var(--transition-base) ease;
+	&:hover {
+		box-shadow: var(--shadow-card-hover);
+	}
 }

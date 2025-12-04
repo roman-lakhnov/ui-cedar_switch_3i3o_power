@@ -16,13 +16,13 @@ import styles from './Header.module.scss'
 const Header = () => {
 	const description = {
 		Dashboard: 'Embedded device control',
-		Endpoints: 'API endpoint management',
+		Dev: 'API endpoint management',
 		Logs: 'View device logs',
 		Settings: 'Configure your preferences',
 		Login: 'Sign in to your account'
 	}
 	// get current path
-	const path = window.location.pathname
+	const path = globalThis.location.pathname
 	const pageName =
 		path === '/'
 			? 'Dashboard'
@@ -30,13 +30,13 @@ const Header = () => {
 			  path
 					.slice(2)
 					.replace(/\/.*/, '')
-					.replace(/([A-Z])/g, ' $1')
+					.replaceAll(/([A-Z])/g, ' $1')
 					.trim()
 
 	return (
 		<header className={styles.header}>
-			<div className={styles.row}>
-				{pageName == 'Dashboard' && (
+			<div className={styles.logoRow}>
+				{/* {pageName == 'Dashboard' && (
 					<a
 						href='https://github.com/kshypachov/cedar_switch_3i3o_power'
 						target='_blank'
@@ -44,45 +44,25 @@ const Header = () => {
 					>
 						<Github className={styles.logo} />
 					</a>
-				)}
+				)} */}
 				{pageName == 'Login' && (
-					<a
-						// href='https://github.com/kshypachov/cedar_switch_3i3o_power'
-						// target='_blank'
-						// rel='noopener noreferrer'
-					>
 						<Shield className={styles.logo} />
-					</a>
 				)}
-
 				{pageName !== 'Dashboard' && pageName !== 'Login' && (
 					<Link to='/'>
 						<ArrowLeft className={styles.logo} />
 					</Link>
 				)}
-
-				<div className={styles.col}>
+				<div className={styles.headingCol}>
 					<h1>{pageName}</h1>
 					<p>{description[pageName as keyof typeof description]}</p>
 				</div>
 			</div>
 			<div className={styles.nav}>
 				{pageName == 'Dashboard' && (
-					<Link className={styles.link} to='/endpoints'>
+					<Link className={styles.link} to='/dev'>
 						<Bug className={styles.icon} />
 						Dev
-					</Link>
-				)}
-				{pageName == 'Dashboard' && (
-					<Link className={styles.link} to='/logs'>
-						<FileText className={styles.icon} />
-						Logs
-					</Link>
-				)}
-				{pageName == 'Dashboard' && (
-					<Link className={styles.link} to='/settings'>
-						<Settings className={styles.icon} />
-						Settings
 					</Link>
 				)}
 				{pageName == 'Dashboard' && (
@@ -90,6 +70,18 @@ const Header = () => {
 						<Languages className={styles.icon} />
 						EN
 					</button>
+				)}
+				{pageName == 'Dashboard' && (
+					<Link className={styles.link} to='/logs'>
+						<FileText className={styles.icon} />
+						Device Logs
+					</Link>
+				)}
+				{pageName == 'Dashboard' && (
+					<Link className={styles.link} to='/settings'>
+						<Settings className={styles.icon} />
+						Settings
+					</Link>
 				)}
 				{pageName == 'Logs' && (
 					<button className={styles.link}>

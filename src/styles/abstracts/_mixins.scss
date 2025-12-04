@@ -1,0 +1,19 @@
+@use 'variables' as *;
+
+@mixin media-l {
+	@media (max-width: var(--bp-l)) {
+		@content;
+	}
+}
+
+@mixin media-m {
+	@media (max-width: var(--bp-m)) {
+		@content;
+	}
+}
+
+@mixin media-s {
+	@media (max-width: var(--bp-s)) {
+		@content;
+	}
+}

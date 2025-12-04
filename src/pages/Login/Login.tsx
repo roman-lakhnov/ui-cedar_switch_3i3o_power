@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 
 const Login = () => {
 	return (
-		<div className='page'>
+		<div className='container'>
 			<Header />
-			<Link to='/'>Skip login and go to Dashboard</Link>
+			<main>
+				<Link to='/'>Skip login and go to Dashboard</Link>
+			</main>
 		</div>
 	)
 }
