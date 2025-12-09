@@ -9,13 +9,12 @@ import type {
 	MonitoringParameter,
 	RelayState
 } from '@/types'
-import { generateRandomData } from '@/utils/utils'
+import { generateRandomData, secondsToDhms } from '@/utils/utils'
 import { Wifi } from 'lucide-react'
 import { useState } from 'react'
 import styles from './Dashboard.module.scss'
 
 const Dashboard = () => {
-	// const [mqttConnected, setMqttConnected] = useState(true)
 	const [relays, setRelays] = useState<RelayState[]>([
 		{ id: 1, name: `${'Relay'} 1`, isActive: false },
 		{ id: 2, name: `${'Relay'} 2`, isActive: true },
@@ -68,6 +67,13 @@ const Dashboard = () => {
 	const [shownMonitoring, setShownMonitoring] =
 		useState<MonitoringParameter | null>(null)
 
+	const deviceInfo: Record<string, string> = {
+		'Firmware version': 'v1.2.3',
+		Uptime: '225121',
+		'IP address': '192.168.1.100',
+		'MAC address': 'AA:BB:CC:DD:EE:FF'
+	}
+
 	const toggleRelay = (id: number) => {
 		setRelays(prev =>
 			prev.map(relay =>
@@ -86,7 +92,7 @@ const Dashboard = () => {
 	return (
 		<div className='container'>
 			<Header />
-			<main>
+			<main className={styles.dashboard}>
 				<section className={styles.stats}>
 					<div className={styles.content}>
 						<div className='card'>
@@ -154,12 +160,16 @@ const Dashboard = () => {
 					</section>
 				)}
 				<section className={`card ${styles.info}`}>
-					<h2>Device Info</h2>
-					<ul>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
+					<h2>Device Information</h2>
+					<ul className={styles.deviceInfoList}>
+						{Object.entries(deviceInfo).map(([key, value]) => (
+							<li key={key} className={styles.deviceInfoItem}>
+								<span className={styles.deviceInfoKey}>{key}</span>
+								<span className={styles.deviceInfoValue}>
+									{key == 'Uptime' ? secondsToDhms(Number(value)) : value}
+								</span>
+							</li>
+						))}
 					</ul>
 				</section>
 			</main>
