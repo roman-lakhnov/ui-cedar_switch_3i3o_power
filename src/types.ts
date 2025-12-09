@@ -88,3 +88,10 @@ export interface DigitalInputState {
 	name: string
 	isActive: boolean
 }
+
+export interface MonitoringParameter {
+	id: number
+	parameterName: string
+	parameterValues: number[]
+	unit: string
+}

@@ -71,22 +71,24 @@ export async function handleCreateUser(
 	}
 }
 
-
 export async function handleDeleteUser(
 	deleteUser: UserType,
 	setData: React.Dispatch<React.SetStateAction<DataType>>,
 	setDeleteUser: React.Dispatch<React.SetStateAction<UserType>>
 ) {
 	try {
-		const response = await fetch(`${endpoints.authUsers.name}?name=${deleteUser.name}`, {
-			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			// body: JSON.stringify(deleteUser)
-			// need to pass deleteUser.name as query param not in body
-			// body: JSON.stringify({ name: deleteUser.name })
-		})
+		const response = await fetch(
+			`${endpoints.authUsers.name}?name=${deleteUser.name}`,
+			{
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+				// body: JSON.stringify(deleteUser)
+				// need to pass deleteUser.name as query param not in body
+				// body: JSON.stringify({ name: deleteUser.name })
+			}
+		)
 		const json = (await response.json()) as DataType
 		console.log(json)
 		if (!response.ok) {
@@ -97,4 +99,23 @@ export async function handleDeleteUser(
 	} catch (error) {
 		console.error('Error fetching data:', error)
 	}
+}
+
+export function generateRandomData(
+	first: number,
+	length: number,
+	maxDeviation: number
+): number[] {
+	const arr: number[] = []
+	arr.push(Number.parseFloat(first.toFixed(2)))
+	while (arr.length < length) {
+		const deviation = first * maxDeviation * Math.random()
+		const addOrSubtract = Math.random() < 0.5 ? -1 : 1
+		const newValue = Number.parseFloat(
+			(first + addOrSubtract * deviation).toFixed(2)
+		)
+		arr.push(newValue)
+	}
+
+	return arr
 }

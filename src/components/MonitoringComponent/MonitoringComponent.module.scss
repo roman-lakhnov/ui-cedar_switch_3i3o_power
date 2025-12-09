@@ -1,0 +1,30 @@
+.monitoringCard {
+	&.inactive,
+	&.active {
+		border-width: 2px;
+	}
+	&.active {
+		border-color: var(--color-black);
+	}
+	text-align: start;
+	position: relative;
+	.heading {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 12px;
+	}
+	h3 {
+		margin-right: auto;
+	}
+	.iconWrapper,
+	.chevron {
+		width: 16px;
+		height: 16px;
+	}
+	.value {
+		font-size: 24px;
+		font-weight: 700;
+		line-height: 32px;
+	}
+}
