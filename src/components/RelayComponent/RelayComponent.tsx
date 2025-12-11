@@ -21,8 +21,8 @@ const RelayComponent = memo(({ relay, onToggle }: RelayComponentProps) => {
 				)}
 				<h3>{relay.name}</h3>
 				<div
-					className={`${styles.toggleAction} ${
-						relay.isActive ? styles.active : ''
+					className={`status ${styles.toggleAction} ${
+						relay.isActive ? styles.active : styles.inactive
 					}`}
 				>
 					{relay.isActive ? 'ON' : 'OFF'}
@@ -37,7 +37,7 @@ const RelayComponent = memo(({ relay, onToggle }: RelayComponentProps) => {
 				</p>
 				<button
 					className={`${styles.toggleButton} ${
-						relay.isActive ? styles.active : ''
+						relay.isActive ? styles.active : styles.inactive
 					}`}
 					onClick={() => onToggle(relay.id)}
 				>

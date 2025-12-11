@@ -6,7 +6,6 @@ import {
 	Languages,
 	LogOut,
 	Settings,
-	Shield,
 	Trash2
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -63,17 +62,18 @@ const Header = () => {
 						href='https://github.com/kshypachov/cedar_switch_3i3o_power'
 						target='_blank'
 						rel='noopener noreferrer'
+						className={`button ${styles.logo}`}
 					>
 						<img
 							src='/src/assets/icons/github.svg'
 							alt='gitLogo'
-							className={styles.logo}
+							className={styles.icon}
 						/>
 					</a>
 				)}
 				{pageName !== 'Dashboard' && (
-					<Link to='/'>
-						<ArrowLeft className={styles.logo} />
+					<Link to='/' className={`button ${styles.backArrow}`}>
+						<ArrowLeft className={styles.icon} />
 					</Link>
 				)}
 				<div className={styles.content}>
@@ -81,52 +81,44 @@ const Header = () => {
 					<p>{description}</p>
 				</div>
 			</div>
-			{pageName == 'Dashboard' && (
-				<div className={styles.nav}>
-					{pageName == 'Dashboard' && (
-						<Link className={styles.link} to='/dev'>
+			<div className={styles.nav}>
+				{pageName == 'Dashboard' && (
+					<>
+						<Link className={`button ${styles.link}`} to='/dev'>
 							<Bug className={styles.icon} />
 							Dev
 						</Link>
-					)}
-					{pageName == 'Dashboard' && (
-						<button className={styles.link}>
+						<button className={`button ${styles.link}`}>
 							<Languages className={styles.icon} />
 							EN
 						</button>
-					)}
-					{pageName == 'Dashboard' && (
-						<Link className={styles.link} to='/logs'>
+						<Link className={`button ${styles.link}`} to='/logs'>
 							<FileText className={styles.icon} />
 							Device Logs
 						</Link>
-					)}
-					{pageName == 'Dashboard' && (
-						<Link className={styles.link} to='/settings'>
+						<Link className={`button ${styles.link}`} to='/settings'>
 							<Settings className={styles.icon} />
 							Settings
 						</Link>
-					)}
-					{pageName == 'Logs' && (
-						<button className={styles.link}>
-							<Download className={styles.icon} />
-							Export
-						</button>
-					)}
-					{pageName == 'Logs' && (
-						<button className={`${styles.link} ${styles.clear}`}>
-							<Trash2 className={styles.icon} />
-							Clear Logs
-						</button>
-					)}
-					{pageName == 'Dashboard' && (
-						<Link className={styles.link} to='/login'>
+						<Link className={`button ${styles.link}`} to='/login'>
 							<LogOut className={styles.icon} />
 							Logout
 						</Link>
-					)}
-				</div>
-			)}
+					</>
+				)}
+				{pageName == 'Device Logs' && (
+					<>
+						<button className={`button ${styles.link}`}>
+							<Download className={styles.icon} />
+							Export
+						</button>
+						<button className={`button ${styles.link} ${styles.clear}`}>
+							<Trash2 className={styles.icon} />
+							Clear Logs
+						</button>
+					</>
+				)}
+			</div>
 		</header>
 	)
 }

@@ -100,7 +100,7 @@ const Dashboard = () => {
 								<Wifi className={styles.wifiIcon} />
 								MQTT Connection
 							</h3>
-							<div className={styles.mqttStatus}>Connected</div>
+							<div className='status'>Connected</div>
 						</div>
 						<div className='card'>
 							<h3>Active relays</h3>
@@ -111,7 +111,7 @@ const Dashboard = () => {
 						</div>
 						<div className='card'>
 							<h3>System status</h3>
-							<div className={styles.systemStatus}>Ready</div>
+							<div className='status'>Ready</div>
 						</div>
 					</div>
 				</section>

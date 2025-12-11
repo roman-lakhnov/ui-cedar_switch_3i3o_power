@@ -32,19 +32,11 @@
 			letter-spacing: -0.6px;
 		}
 		.inputStatus {
-			font-size: 12px;
-			font-weight: 600;
 			letter-spacing: -0.6px;
-			line-height: 16px;
-			background-color: var(--color-grey);
-			padding: 2px 10px;
-			border-radius: 50px;
-			border: 1px solid var(--color-grey);
-
-			&.active {
-				background-color: var(--color-primary);
-				border-color: var(--color-primary);
-				color: var(--color-white);
+			&.inactive {
+				background-color: var(--color-grey);
+				border: 1px solid var(--color-grey);
+				color: var(--color-text);
 			}
 		}
 	}

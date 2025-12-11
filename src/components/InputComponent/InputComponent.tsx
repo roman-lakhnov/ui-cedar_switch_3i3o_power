@@ -24,8 +24,8 @@ const InputComponent = memo(({ input }: InputComponentProps) => {
 				)}
 				<h3>{input.name}</h3>
 				<div
-					className={`${styles.inputStatus} ${
-						input.isActive ? styles.active : ''
+					className={`status ${styles.inputStatus} ${
+						input.isActive ? styles.active : styles.inactive
 					}`}
 				>
 					{input.isActive ? 'Active' : 'Inactive'}

@@ -30,7 +30,6 @@
 
 	--shadow-card: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
 	--shadow-card-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-	
 
 	/* fonts */
 	--w-regular: 400;
@@ -41,7 +40,8 @@
 
 	/* container */
 	--container-pad: clamp(16px, 3vw, 24px);
-	--container-width: 1152px;
+	// --container-width: 1152px;
+	--container-width: 1280px; // TODO only for logs page styles dev
 	--container-max: calc(var(--container-width) + var(--container-pad) * 2);
 	--section-space-l: 120px;
 	--section-space-m: 60px;

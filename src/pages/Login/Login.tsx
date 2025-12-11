@@ -25,6 +25,7 @@ const Login = () => {
 								<label htmlFor='username'>Username</label>
 							</div>
 							<input
+								className='input'
 								type='text'
 								id='username'
 								name='username'
@@ -37,13 +38,14 @@ const Login = () => {
 								<label htmlFor='password'>Password</label>
 							</div>
 							<input
+								className='input'
 								type='password'
 								id='password'
 								name='password'
 								placeholder='Enter password'
 							/>
 						</div>
-						<button type='submit' className={styles.loginButton}>
+						<button type='submit' className={`button ${styles.loginButton}`}>
 							Log in
 						</button>
 					</form>
