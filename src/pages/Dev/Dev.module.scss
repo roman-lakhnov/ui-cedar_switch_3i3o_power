@@ -1,44 +1,4 @@
-.stats {
-	flex-direction: row;
-}
-
-.relay,
-.inputs {
-	div {
-		display: flex;
-		flex-direction: row;
-		gap: 16px;
-	}
-}
-
-.monitoring {
-	div {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 16px;
-	}
-}
-
-.card {
-	flex-grow: 1;
-	background: #fff;
-	height: 130px;
-	border: 1px solid #ddd;
-	border-radius: 10px;
-	padding: 1rem;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-	// transform: translateY(-3px);
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.info {
-	height: 200px;
-}
-
-button:active {
-	transform: scale(0.98);
+.devContent{
+	display: grid;
+	grid-template-columns: repeat(3, auto);
 }

@@ -4,7 +4,7 @@
 	display: flex;
 	justify-content: space-between;
 }
-.logoRow {
+.heading {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -21,7 +21,7 @@
 	color: var(--color-black);
 }
 
-.headingCol {
+.content {
 	display: flex;
 	flex-direction: column;
 	gap: 4px;

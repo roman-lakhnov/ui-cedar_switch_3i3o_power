@@ -6,6 +6,9 @@
 	&.active {
 		border-color: var(--color-black);
 	}
+	&:hover {
+		cursor: pointer;
+	}
 	text-align: start;
 	position: relative;
 	.heading {

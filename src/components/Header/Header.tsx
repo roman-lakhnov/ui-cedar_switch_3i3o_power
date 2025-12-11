@@ -3,7 +3,6 @@ import {
 	Bug,
 	Download,
 	FileText,
-	Github,
 	Languages,
 	LogOut,
 	Settings,
@@ -13,95 +12,121 @@ import {
 import { Link } from 'react-router-dom'
 import styles from './Header.module.scss'
 
+type pathDescription = {
+	path: string
+	pageName: string
+	description: string
+}
+
 const Header = () => {
-	const description = {
-		Dashboard: 'Embedded device control',
-		Dev: 'API endpoint management',
-		Logs: 'View device logs',
-		Settings: 'Configure your preferences',
-		Login: 'Sign in to your account'
-	}
+	const pathDescriptions: pathDescription[] = [
+		{
+			path: '/',
+			pageName: 'Dashboard',
+			description: 'Embedded device control'
+		},
+		{
+			path: '/dev',
+			pageName: 'Dev',
+			description: 'API endpoint management'
+		},
+		{
+			path: '/logs',
+			pageName: 'Device Logs',
+			description: 'View device logs'
+		},
+		{
+			path: '/settings',
+			pageName: 'Settings',
+			description: 'Configure your preferences'
+		},
+		{
+			path: '*',
+			pageName: 'Page Not Found',
+			description: 'The page you are looking for does not exist'
+		}
+	]
 	// get current path
 	const path = globalThis.location.pathname
 	const pageName =
-		path === '/'
-			? 'Dashboard'
-			: path.slice(1).charAt(0).toUpperCase() +
-			  path
-					.slice(2)
-					.replace(/\/.*/, '')
-					.replaceAll(/([A-Z])/g, ' $1')
-					.trim()
+		pathDescriptions.find(p => p.path === path)?.pageName ||
+		pathDescriptions.find(p => p.path === '*')?.pageName
+	const description =
+		pathDescriptions.find(p => p.path === path)?.description ||
+		pathDescriptions.find(p => p.path === '*')?.description
 
 	return (
 		<header className={styles.header}>
-			<div className={styles.logoRow}>
-				{/* {pageName == 'Dashboard' && (
+			<div className={styles.heading}>
+				{pageName == 'Dashboard' && (
 					<a
 						href='https://github.com/kshypachov/cedar_switch_3i3o_power'
 						target='_blank'
 						rel='noopener noreferrer'
 					>
-						<Github className={styles.logo} />
+						<img
+							src='/src/assets/icons/github.svg'
+							alt='gitLogo'
+							className={styles.logo}
+						/>
 					</a>
-				)} */}
-				{pageName == 'Login' && (
-						<Shield className={styles.logo} />
 				)}
-				{pageName !== 'Dashboard' && pageName !== 'Login' && (
+				{pageName !== 'Dashboard' && (
 					<Link to='/'>
 						<ArrowLeft className={styles.logo} />
 					</Link>
 				)}
-				<div className={styles.headingCol}>
+				<div className={styles.content}>
 					<h1>{pageName}</h1>
-					<p>{description[pageName as keyof typeof description]}</p>
+					<p>{description}</p>
 				</div>
 			</div>
-			<div className={styles.nav}>
-				{pageName == 'Dashboard' && (
-					<Link className={styles.link} to='/dev'>
-						<Bug className={styles.icon} />
-						Dev
-					</Link>
-				)}
-				{pageName == 'Dashboard' && (
-					<button className={styles.link}>
-						<Languages className={styles.icon} />
-						EN
-					</button>
-				)}
-				{pageName == 'Dashboard' && (
-					<Link className={styles.link} to='/logs'>
-						<FileText className={styles.icon} />
-						Device Logs
-					</Link>
-				)}
-				{pageName == 'Dashboard' && (
-					<Link className={styles.link} to='/settings'>
-						<Settings className={styles.icon} />
-						Settings
-					</Link>
-				)}
-				{pageName == 'Logs' && (
-					<button className={styles.link}>
-						<Download className={styles.icon} />
-						Export
-					</button>
-				)}
-				{pageName == 'Logs' && (
-					<button className={`${styles.link} ${styles.clear}`}>
-						<Trash2 className={styles.icon} />
-						Clear Logs
-					</button>
-				)}
-				{pageName == 'Dashboard' && (
-					<Link className={styles.link} to='/login'>
-						<LogOut className={styles.icon} />
-						Logout
-					</Link>
-				)}
-			</div>
+			{pageName == 'Dashboard' && (
+				<div className={styles.nav}>
+					{pageName == 'Dashboard' && (
+						<Link className={styles.link} to='/dev'>
+							<Bug className={styles.icon} />
+							Dev
+						</Link>
+					)}
+					{pageName == 'Dashboard' && (
+						<button className={styles.link}>
+							<Languages className={styles.icon} />
+							EN
+						</button>
+					)}
+					{pageName == 'Dashboard' && (
+						<Link className={styles.link} to='/logs'>
+							<FileText className={styles.icon} />
+							Device Logs
+						</Link>
+					)}
+					{pageName == 'Dashboard' && (
+						<Link className={styles.link} to='/settings'>
+							<Settings className={styles.icon} />
+							Settings
+						</Link>
+					)}
+					{pageName == 'Logs' && (
+						<button className={styles.link}>
+							<Download className={styles.icon} />
+							Export
+						</button>
+					)}
+					{pageName == 'Logs' && (
+						<button className={`${styles.link} ${styles.clear}`}>
+							<Trash2 className={styles.icon} />
+							Clear Logs
+						</button>
+					)}
+					{pageName == 'Dashboard' && (
+						<Link className={styles.link} to='/login'>
+							<LogOut className={styles.icon} />
+							Logout
+						</Link>
+					)}
+				</div>
+			)}
 		</header>
 	)
 }

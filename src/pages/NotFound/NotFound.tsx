@@ -1,9 +1,9 @@
+import Header from '@/components/Header/Header'
+
 const NotFound = () => {
 	return (
 		<div className='container'>
-			<main>
-				<h1>Page Not Found</h1>
-			</main>
+			<Header />
 		</div>
 	)
 }
