@@ -2,6 +2,7 @@ import Header from '@/components/Header/Header'
 import styles from './DeviceLogs.module.scss'
 import { useEffect, useState } from 'react'
 import { CircleAlert, Info, Search, TriangleAlert } from 'lucide-react'
+import CustomInput from '@/components/CustomInput/CustomInput'
 
 type log = {
 	timestamp: string
@@ -128,8 +129,10 @@ const DeviceLogs = () => {
 					<div className={styles.content}>
 						<div className={styles.searchWrapper}>
 							<input
-								className={`input ${styles.searchInput}`}
+								className={styles.searchInput}
 								type='text'
+								id='searchLogs'
+								name='searchLogs'
 								placeholder='Search logs...'
 								value={search}
 								onChange={handleSearchChange}

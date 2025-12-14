@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from './Login.module.scss'
 import { Lock, Shield, User } from 'lucide-react'
+import CustomInput from '@/components/CustomInput/CustomInput'
 
 const Login = () => {
 	return (
@@ -24,12 +25,12 @@ const Login = () => {
 								<User className={styles.userIcon} />
 								<label htmlFor='username'>Username</label>
 							</div>
-							<input
-								className='input'
+							<CustomInput
 								type='text'
 								id='username'
 								name='username'
 								placeholder='Enter username'
+								inputVariant='login'
 							/>
 						</div>
 						<div className={styles.inputGroup}>
@@ -37,12 +38,12 @@ const Login = () => {
 								<Lock className={styles.lockIcon} />
 								<label htmlFor='password'>Password</label>
 							</div>
-							<input
-								className='input'
+							<CustomInput
 								type='password'
 								id='password'
 								name='password'
 								placeholder='Enter password'
+								inputVariant='login'
 							/>
 						</div>
 						<button type='submit' className={`button ${styles.loginButton}`}>

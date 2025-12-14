@@ -3,6 +3,7 @@ import styles from './Settings.module.scss'
 import { Power } from 'lucide-react'
 import { useState } from 'react'
 import ToggleButton from '@/components/ToggleButton/ToggleButton'
+import CustomInput from '@/components/CustomInput/CustomInput'
 
 const Settings = () => {
 	const [toggles, setToggles] = useState({
@@ -41,39 +42,43 @@ const Settings = () => {
 					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='hostname'>Hostname</label>
-						<input
-							placeholder='hostname'
-							className='input'
+						<CustomInput
 							type='text'
 							id='hostname'
-						></input>
+							name='hostname'
+							placeholder='hostname'
+							inputVariant='settings'
+						/>
 					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='port'>Port</label>
-						<input
-							placeholder='port'
-							className='input'
+						<CustomInput
 							type='number'
 							id='port'
-						></input>
+							name='port'
+							placeholder='port'
+							inputVariant='settings'
+						/>
 					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='username'>Username</label>
-						<input
-							placeholder='username'
-							className='input'
+						<CustomInput
 							type='text'
 							id='username'
-						></input>
+							name='username'
+							placeholder='username'
+							inputVariant='settings'
+						/>
 					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='password'>Password</label>
-						<input
-							placeholder='password'
-							className='input'
+						<CustomInput
 							type='password'
 							id='password'
-						></input>
+							name='password'
+							placeholder='password'
+							inputVariant='settings'
+						/>
 					</div>
 					<div className={styles.controlGroup}>
 						<label htmlFor='enableTls'>Enable TLS</label>
@@ -174,12 +179,13 @@ const Settings = () => {
 					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='powerThreshold'>Power threshold (W)</label>
-						<input
-							placeholder='3000'
-							className='input'
-							type='text'
+						<CustomInput
+							type='number'
 							id='powerThreshold'
-						></input>
+							name='powerThreshold'
+							placeholder='3000'
+							inputVariant='settings'
+						/>
 					</div>
 					<div className={styles.controlGroup}>
 						<label htmlFor='disconnectAllRelays'>Disconnect all relays</label>
