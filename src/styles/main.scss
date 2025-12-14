@@ -89,3 +89,39 @@ section {
 		outline-offset: 2px;
 	}
 }
+
+.toggleButton {
+	width: 44px;
+	height: 24px;
+	border-radius: 50px;
+	border: 2px solid var(--color-grey);
+	background-color: var(--color-grey);
+	cursor: pointer;
+	position: relative;
+	transition: all 0.3s ease;
+	outline: none;
+
+	&:hover {
+		opacity: 0.8;
+	}
+
+	&.active {
+		background-color: var(--color-primary);
+		border-color: var(--color-primary);
+	}
+
+	.slider {
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background-color: var(--color-white);
+		position: absolute;
+		top: 0;
+		left: 1px;
+		transition: transform 0.3s ease;
+	}
+
+	&.active .slider {
+		transform: translateX(19px);
+	}
+}
