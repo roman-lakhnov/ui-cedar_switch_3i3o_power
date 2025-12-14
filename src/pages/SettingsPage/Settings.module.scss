@@ -24,12 +24,6 @@
 			opacity: 0.8;
 		}
 	}
-	.toggleButton {
-		&.active {
-			background-color: var(--color-black);
-			border-color: var(--color-black);
-		}
-	}
 }
 .mqttSettings,
 .safetyStates,

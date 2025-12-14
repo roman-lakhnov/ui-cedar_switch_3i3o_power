@@ -2,6 +2,7 @@ import Header from '@/components/Header/Header'
 import styles from './Settings.module.scss'
 import { Power } from 'lucide-react'
 import { useState } from 'react'
+import ToggleButton from '@/components/ToggleButton/ToggleButton'
 
 const Settings = () => {
 	const [toggles, setToggles] = useState({
@@ -27,21 +28,16 @@ const Settings = () => {
 					</div>
 					<div className={styles.controlGroup}>
 						<label htmlFor='enableMqtt'>Enable MQTT</label>
-						<button
-							className={`toggleButton ${
-								toggles['Enable MQTT']
-									? `active ${styles.active}`
-									: `inactive ${styles.inactive}`
-							} ${styles.toggleButton} `}
-							onClick={() =>
+						<ToggleButton
+							state={toggles['Enable MQTT']}
+							toggleAction={() =>
 								setToggles(prev => ({
 									...prev,
 									'Enable MQTT': !prev['Enable MQTT']
 								}))
 							}
-						>
-							<div className='slider'></div>
-						</button>
+							buttonVariant='settings'
+						/>
 					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='hostname'>Hostname</label>
@@ -81,42 +77,32 @@ const Settings = () => {
 					</div>
 					<div className={styles.controlGroup}>
 						<label htmlFor='enableTls'>Enable TLS</label>
-						<button
-							id='enableTls'
-							className={`toggleButton ${
-								toggles['Enable TLS'] ? 'active' : 'inactive'
-							}`}
-							onClick={() =>
+						<ToggleButton
+							state={toggles['Enable TLS']}
+							toggleAction={() =>
 								setToggles(prev => ({
 									...prev,
 									'Enable TLS': !prev['Enable TLS']
 								}))
 							}
-							aria-pressed={toggles['Enable TLS']}
-						>
-							<div className='slider'></div>
-						</button>
+							buttonVariant='settings'
+						/>
 					</div>
 					<div className={styles.controlGroup}>
 						<label htmlFor='enableServerCertValidation'>
 							Server Certificate Validation
 						</label>
-						<button
-							id='enableServerCertValidation'
-							className={`toggleButton ${
-								toggles['Server Certificate Validation'] ? 'active' : 'inactive'
-							}`}
-							onClick={() =>
+						<ToggleButton
+							state={toggles['Server Certificate Validation']}
+							toggleAction={() =>
 								setToggles(prev => ({
 									...prev,
 									'Server Certificate Validation':
 										!prev['Server Certificate Validation']
 								}))
 							}
-							aria-pressed={toggles['Server Certificate Validation']}
-						>
-							<div className='slider'></div>
-						</button>
+							buttonVariant='settings'
+						/>
 					</div>
 					<button className={`button ${styles.saveMqttButton}`}>
 						Save MQTT Settings
@@ -129,83 +115,38 @@ const Settings = () => {
 					</div>
 					<div className={styles.controlGroup}>
 						<label htmlFor='enableSafetyRelay'>Enable Function</label>
-						<button
-							id='enableSafetyRelay'
-							className={`toggleButton ${
-								toggles['Enable Safety Relay'] ? 'active' : 'inactive'
-							}`}
-							onClick={() =>
+						<ToggleButton
+							state={toggles['Enable Safety Relay']}
+							toggleAction={() =>
 								setToggles(prev => ({
 									...prev,
 									'Enable Safety Relay': !prev['Enable Safety Relay']
 								}))
 							}
-							aria-pressed={toggles['Enable Safety Relay']}
-						>
-							<div className='slider'></div>
-						</button>
+							buttonVariant='settings'
+						/>
 					</div>
 					<h3>Default Relay States:</h3>
-					<div className={styles.controlGroup}>
-						<label htmlFor='relay1'>Relay 1</label>
-						<button
-							id='relay1'
-							className={`toggleButton ${
-								toggles['Relay 1'] ? 'active' : 'inactive'
-							}`}
-							onClick={() =>
-								setToggles(prev => ({ ...prev, 'Relay 1': !prev['Relay 1'] }))
-							}
-							aria-pressed={toggles['Relay 1']}
-						>
-							<div className='slider'></div>
-						</button>
-					</div>
-					<div className={styles.controlGroup}>
-						<label htmlFor='relay2'>Relay 2</label>
-						<button
-							id='relay2'
-							className={`toggleButton ${
-								toggles['Relay 2'] ? 'active' : 'inactive'
-							}`}
-							onClick={() =>
-								setToggles(prev => ({ ...prev, 'Relay 2': !prev['Relay 2'] }))
-							}
-							aria-pressed={toggles['Relay 2']}
-						>
-							<div className='slider'></div>
-						</button>
-					</div>
-					<div className={styles.controlGroup}>
-						<label htmlFor='relay3'>Relay 3</label>
-						<button
-							id='relay3'
-							className={`toggleButton ${
-								toggles['Relay 3'] ? 'active' : 'inactive'
-							}`}
-							onClick={() =>
-								setToggles(prev => ({ ...prev, 'Relay 3': !prev['Relay 3'] }))
-							}
-							aria-pressed={toggles['Relay 3']}
-						>
-							<div className='slider'></div>
-						</button>
-					</div>
-					<div className={styles.controlGroup}>
-						<label htmlFor='relay4'>Relay 4</label>
-						<button
-							id='relay4'
-							className={`toggleButton ${
-								toggles['Relay 4'] ? 'active' : 'inactive'
-							}`}
-							onClick={() =>
-								setToggles(prev => ({ ...prev, 'Relay 4': !prev['Relay 4'] }))
-							}
-							aria-pressed={toggles['Relay 4']}
-						>
-							<div className='slider'></div>
-						</button>
-					</div>
+					{Object.entries(toggles).map(([key, value]) => {
+						if (key.startsWith('Relay')) {
+							return (
+								<div className={styles.controlGroup} key={key}>
+									<label htmlFor={key}>{key}</label>
+									<ToggleButton
+										state={value}
+										toggleAction={() =>
+											setToggles(prev => ({
+												...prev,
+												[key]: !prev[key as keyof typeof toggles]
+											}))
+										}
+										buttonVariant='settings'
+									/>
+								</div>
+							)
+						}
+						return null
+					})}
 					<button className={`button ${styles.saveSafetyButton}`}>
 						Save Safety Relay States
 					</button>
@@ -219,22 +160,17 @@ const Settings = () => {
 						<label htmlFor='enableOverloadProtection'>
 							Enable overload protection
 						</label>
-						<button
-							id='enableOverloadProtection'
-							className={`toggleButton ${
-								toggles['Enable Overload Protection'] ? 'active' : 'inactive'
-							}`}
-							onClick={() =>
+						<ToggleButton
+							state={toggles['Enable Overload Protection']}
+							toggleAction={() =>
 								setToggles(prev => ({
 									...prev,
 									'Enable Overload Protection':
 										!prev['Enable Overload Protection']
 								}))
 							}
-							aria-pressed={toggles['Enable Overload Protection']}
-						>
-							<div className='slider'></div>
-						</button>
+							buttonVariant='settings'
+						/>
 					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='powerThreshold'>Power threshold (W)</label>
@@ -247,21 +183,16 @@ const Settings = () => {
 					</div>
 					<div className={styles.controlGroup}>
 						<label htmlFor='disconnectAllRelays'>Disconnect all relays</label>
-						<button
-							id='disconnectAllRelays'
-							className={`toggleButton ${
-								toggles['Disconnect All Relays'] ? 'active' : 'inactive'
-							}`}
-							onClick={() =>
+						<ToggleButton
+							state={toggles['Disconnect All Relays']}
+							toggleAction={() =>
 								setToggles(prev => ({
 									...prev,
 									'Disconnect All Relays': !prev['Disconnect All Relays']
 								}))
 							}
-							aria-pressed={toggles['Disconnect All Relays']}
-						>
-							<div className='slider'></div>
-						</button>
+							buttonVariant='settings'
+						/>
 					</div>
 					<button className={`button ${styles.saveProtectionButton}`}>
 						Save Protection Settings

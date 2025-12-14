@@ -2,6 +2,7 @@ import { memo } from 'react'
 import { Power, Zap } from 'lucide-react'
 import type { RelayState } from '@/types'
 import styles from './RelayComponent.module.scss'
+import ToggleButton from '../ToggleButton/ToggleButton'
 
 interface RelayComponentProps {
 	relay: RelayState
@@ -35,12 +36,11 @@ const RelayComponent = memo(({ relay, onToggle }: RelayComponentProps) => {
 				<p className={styles.status}>
 					Status: {relay.isActive ? 'Active' : 'Inactive'}
 				</p>
-				<button
-					className={`toggleButton ${relay.isActive ? 'active' : 'inactive'}`}
-					onClick={() => onToggle(relay.id)}
-				>
-					<div className='slider'></div>
-				</button>
+				<ToggleButton
+					state={relay.isActive}
+					toggleAction={() => onToggle(relay.id)}
+					buttonVariant='relay'
+				/>
 			</div>
 		</div>
 	)
