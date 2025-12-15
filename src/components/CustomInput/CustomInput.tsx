@@ -6,6 +6,7 @@ interface CustomInputProps {
 	name: string
 	placeholder: string
 	inputVariant: 'login' | 'settings'
+	required?: boolean
 }
 
 const CustomInput = ({
@@ -13,8 +14,18 @@ const CustomInput = ({
 	id,
 	name,
 	placeholder,
-	inputVariant
+	inputVariant,
+	required = false
 }: CustomInputProps) => {
+	let autoCompleteValue
+	if (name === 'username') {
+		autoCompleteValue = 'username'
+	} else if (name === 'password') {
+		autoCompleteValue = 'current-password'
+	} else {
+		autoCompleteValue = 'off'
+	}
+
 	return (
 		<input
 			className={`${styles.customInput} ${styles[inputVariant]}`}
@@ -22,6 +33,8 @@ const CustomInput = ({
 			id={id}
 			name={name}
 			placeholder={placeholder}
+			required={required}
+			autoComplete={autoCompleteValue}
 		/>
 	)
 }

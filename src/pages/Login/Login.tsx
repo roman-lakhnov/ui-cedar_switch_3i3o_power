@@ -1,9 +1,28 @@
-import { Link } from 'react-router-dom'
-import styles from './Login.module.scss'
-import { Lock, Shield, User } from 'lucide-react'
+import { useAuth } from '@/auth/useAuth'
 import CustomInput from '@/components/CustomInput/CustomInput'
+import { Lock, Shield, User } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import styles from './Login.module.scss'
 
 const Login = () => {
+	const { signIn } = useAuth()
+	const navigate = useNavigate()
+
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		const form = e.currentTarget
+		const fd = new FormData(form)
+		const username = fd.get('username') as string
+		const password = fd.get('password') as string
+		try {
+			await signIn(username, password)
+			navigate('/', { replace: true })
+		} catch (err) {
+			// in a real app show an error
+			console.error('signin failed', err)
+		}
+	}
+
 	return (
 		<div className={`container ${styles.loginPage}`}>
 			<div className={styles.loginCards}>
@@ -15,7 +34,7 @@ const Login = () => {
 					<p>Login to embedded device control panel</p>
 				</header>
 				<main>
-					<form className='card' action=''>
+					<form className='card' onSubmit={handleSubmit}>
 						<div className={styles.headingWrapper}>
 							<div className={styles.dot}></div>
 							<h2>Login credentials</h2>
@@ -31,6 +50,7 @@ const Login = () => {
 								name='username'
 								placeholder='Enter username'
 								inputVariant='login'
+								required={true}
 							/>
 						</div>
 						<div className={styles.inputGroup}>
@@ -44,6 +64,7 @@ const Login = () => {
 								name='password'
 								placeholder='Enter password'
 								inputVariant='login'
+								required={true}
 							/>
 						</div>
 						<button type='submit' className={`button ${styles.loginButton}`}>

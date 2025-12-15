@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import styles from './Header.module.scss'
+import { useAuth } from '@/auth/useAuth'
 
 type pathDescription = {
 	path: string
@@ -53,6 +54,8 @@ const Header = () => {
 	const description =
 		pathDescriptions.find(p => p.path === path)?.description ||
 		pathDescriptions.find(p => p.path === '*')?.description
+
+	const { signOut } = useAuth()
 
 	return (
 		<header className={styles.header}>
@@ -100,10 +103,10 @@ const Header = () => {
 							<Settings className={styles.icon} />
 							Settings
 						</Link>
-						<Link className={`button ${styles.link}`} to='/login'>
+						<button className={`button ${styles.link}`} onClick={signOut}>
 							<LogOut className={styles.icon} />
 							Logout
-						</Link>
+						</button>
 					</>
 				)}
 				{pageName == 'Device Logs' && (
