@@ -19,8 +19,8 @@ function App() {
 						<Route path='/dev' element={<Dev />} />
 						<Route path='/logs' element={<DeviceLogs />} />
 						<Route path='/settings' element={<Settings />} />
+						<Route path='*' element={<NotFound />} />
 					</Route>
-					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</BrowserRouter>
 		</AuthProvider>

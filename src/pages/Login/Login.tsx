@@ -18,7 +18,6 @@ const Login = () => {
 			await signIn(username, password)
 			navigate('/', { replace: true })
 		} catch (err) {
-			// in a real app show an error
 			console.error('signin failed', err)
 		}
 	}
@@ -74,8 +73,13 @@ const Login = () => {
 				</main>
 				<footer className='card'>
 					<div className={styles.status}>
-						<div className={styles.statusIndicator}></div>
-						<p>Device ready for authorization</p>
+						<p>
+							<span
+								className={styles.statusIndicator}
+								aria-hidden='true'
+							/>
+							{' '}Device ready for authorization
+						</p>
 					</div>
 					<Link className={styles.backToHome} to='/'>
 						Back to home

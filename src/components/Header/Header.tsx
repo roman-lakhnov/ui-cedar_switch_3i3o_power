@@ -1,25 +1,29 @@
+import { useAuth } from '@/auth/useAuth'
 import {
-	ArrowLeft,
 	Bug,
 	Download,
 	FileText,
 	Languages,
 	LogOut,
+	Menu,
 	Settings,
 	Trash2
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import BackButton from '../BackButton/BackButton'
 import styles from './Header.module.scss'
-import { useAuth } from '@/auth/useAuth'
-
-type pathDescription = {
-	path: string
-	pageName: string
-	description: string
-}
 
 const Header = () => {
-	const pathDescriptions: pathDescription[] = [
+	function toggleMenu() {
+		const nav = document.querySelector(`.${styles.nav}`)
+		const isDisplayed = getComputedStyle(nav!).display !== 'none'
+		if (isDisplayed) {
+			nav!.setAttribute('style', 'display: none;')
+		} else {
+			nav!.setAttribute('style', 'display: flex;')
+		}
+	}
+	const pathDescriptions = [
 		{
 			path: '/',
 			pageName: 'Dashboard',
@@ -59,32 +63,12 @@ const Header = () => {
 
 	return (
 		<header className={styles.header}>
-			<div className={styles.heading}>
-				{pageName == 'Dashboard' && (
-					<a
-						href='https://github.com/kshypachov/cedar_switch_3i3o_power'
-						target='_blank'
-						rel='noopener noreferrer'
-						className={`button ${styles.logo}`}
-					>
-						<img
-							src='/src/assets/icons/github.svg'
-							alt='gitLogo'
-							className={styles.icon}
-						/>
-					</a>
-				)}
-				{pageName !== 'Dashboard' && (
-					<Link to='/' className={`button ${styles.backArrow}`}>
-						<ArrowLeft className={styles.icon} />
-					</Link>
-				)}
-				<div className={styles.content}>
-					<h1>{pageName}</h1>
-					<p>{description}</p>
-				</div>
+			<BackButton pageName={pageName!} />
+			<div className={styles.pageDescription}>
+				<h1>{pageName}</h1>
+				<p>{description}</p>
 			</div>
-			<div className={styles.nav}>
+			<div className={`${styles.nav}`}>
 				{pageName == 'Dashboard' && (
 					<>
 						<Link className={`button ${styles.link}`} to='/dev'>
@@ -122,6 +106,12 @@ const Header = () => {
 					</>
 				)}
 			</div>
+			<button
+				className={`button ${styles.burgerMenuButton}`}
+				onClick={toggleMenu}
+			>
+				<Menu className={styles.icon} />
+			</button>
 		</header>
 	)
 }

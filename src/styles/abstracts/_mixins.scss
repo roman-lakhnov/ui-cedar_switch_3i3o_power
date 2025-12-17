@@ -1,19 +1,22 @@
-@use 'variables' as *;
+// SCSS breakpoint variables
+$bp-s: 768px;
+$bp-m: 1024px;
+$bp-l: 1440px;
 
 @mixin media-l {
-	@media (max-width: var(--bp-l)) {
+	@media (max-width: $bp-l) {
 		@content;
 	}
 }
 
 @mixin media-m {
-	@media (max-width: var(--bp-m)) {
+	@media (max-width: $bp-m) {
 		@content;
 	}
 }
 
 @mixin media-s {
-	@media (max-width: var(--bp-s)) {
+	@media (max-width: $bp-s) {
 		@content;
 	}
 }
