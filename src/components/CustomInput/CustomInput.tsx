@@ -4,9 +4,11 @@ interface CustomInputProps {
 	type: 'text' | 'password' | 'email' | 'number'
 	id: string
 	name: string
-	placeholder: string
-	inputVariant: 'login' | 'settings'
+	inputVariant?: 'login' | 'settings'
+	placeholder?: string
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 	required?: boolean
+	value?: string | number
 }
 
 const CustomInput = ({
@@ -14,8 +16,10 @@ const CustomInput = ({
 	id,
 	name,
 	placeholder,
-	inputVariant,
-	required = false
+	onChange,
+	inputVariant = 'settings',
+	required = false,
+	value
 }: CustomInputProps) => {
 	let autoCompleteValue
 	if (name === 'username') {
@@ -35,6 +39,8 @@ const CustomInput = ({
 			placeholder={placeholder}
 			required={required}
 			autoComplete={autoCompleteValue}
+			value={value}
+			onChange={onChange}
 		/>
 	)
 }

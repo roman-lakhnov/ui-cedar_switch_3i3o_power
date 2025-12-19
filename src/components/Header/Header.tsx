@@ -69,7 +69,7 @@ const Header = () => {
 				<p>{description}</p>
 			</div>
 			<div className={`${styles.nav}`}>
-				{pageName == 'Dashboard' && (
+				{(pageName == 'Dashboard' || pageName == 'Dev') && (
 					<>
 						<Link className={`button ${styles.link}`} to='/dev'>
 							<Bug className={styles.icon} />
@@ -93,7 +93,7 @@ const Header = () => {
 						</button>
 					</>
 				)}
-				{pageName == 'Device Logs' && (
+				{(pageName == 'Device Logs' || pageName == 'Dev') && (
 					<>
 						<button className={`button ${styles.link}`}>
 							<Download className={styles.icon} />
@@ -106,7 +106,9 @@ const Header = () => {
 					</>
 				)}
 			</div>
-			{(pageName == 'Device Logs' || pageName == 'Dashboard') && (
+			{(pageName == 'Device Logs' ||
+				pageName == 'Dashboard' ||
+				pageName == 'Dev') && (
 				<button
 					className={`button ${styles.burgerMenuButton}`}
 					onClick={toggleMenu}

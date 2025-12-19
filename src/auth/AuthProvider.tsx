@@ -4,10 +4,10 @@ import { AuthContext, type User } from './authContext'
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const [user, setUser] = useState<User | null>(null)
 
-	const signIn = async (username: string, password: string): Promise<void> => {
+	const signIn = async (username?: string, password?: string) => {
 		// TODO: Implement authentication logic
 		console.log(password) // to avoid unused variable warning
-		setUser({ username })
+		setUser({ username: username || 'defaultUser' })
 	}
 
 	const signOut = () => {

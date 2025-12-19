@@ -1,4 +1,23 @@
-.devContent{
+@use '../../styles/abstracts/mixins' as *;
+
+.devContent {
 	display: grid;
 	grid-template-columns: repeat(3, auto);
+	gap: 12px;
+	@include media-s {
+		grid-template-columns: auto;
+	}
+	button,
+	label {
+		margin-top: 8px;
+	}
+	button{
+		background-color: var(--color-black);
+		color: var(--color-white);
+		&:hover {
+			background-color: var(--color-black);
+			opacity: 0.8;
+		}
+	}
+
 }

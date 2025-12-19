@@ -8,6 +8,7 @@ import {
 } from '@/utils/utils'
 import { useEffect, useState } from 'react'
 import styles from './Dev.module.scss'
+import CustomInput from '@/components/CustomInput/CustomInput'
 
 const Dev = () => {
 	const [data, setData] = useState<DataType>({} as DataType)
@@ -266,7 +267,9 @@ const Dev = () => {
 									</label>
 									<label>
 										Host:
-										<input
+										<CustomInput
+											id='mqtt-host'
+											name='mqtt-host'
 											type='text'
 											value={form.mqttSettings.host}
 											onChange={e =>
@@ -282,7 +285,9 @@ const Dev = () => {
 									</label>
 									<label>
 										Port:
-										<input
+										<CustomInput
+											id='mqtt-port'
+											name='mqtt-port'
 											type='number'
 											value={form.mqttSettings.port}
 											onChange={e =>
@@ -298,7 +303,9 @@ const Dev = () => {
 									</label>
 									<label>
 										User:
-										<input
+										<CustomInput
+											id='mqtt-user'
+											name='mqtt-user'
 											type='text'
 											value={form.mqttSettings.user}
 											onChange={e =>
@@ -314,7 +321,9 @@ const Dev = () => {
 									</label>
 									<label>
 										Pass:
-										<input
+										<CustomInput
+											id='mqtt-pass'
+											name='mqtt-pass'
 											type='password'
 											value={form.mqttSettings.pass}
 											onChange={e =>
@@ -360,6 +369,7 @@ const Dev = () => {
 					<div>
 						<h3>post data</h3>
 						<button
+							className='button'
 							type='button'
 							onClick={() => handleSubmit('systemReboot', setData, form)}
 						>
@@ -391,7 +401,9 @@ const Dev = () => {
 							<form>
 								<label>
 									Name:
-									<input
+									<CustomInput
+										id='create-username'
+										name='create-username'
 										type='text'
 										value={createUser.name ?? ''}
 										onChange={e =>
@@ -401,7 +413,9 @@ const Dev = () => {
 								</label>
 								<label>
 									Password:
-									<input
+									<CustomInput
+										id='create-password'
+										name='create-password'
 										type='text'
 										value={createUser.password ?? ''}
 										onChange={e =>
@@ -411,6 +425,7 @@ const Dev = () => {
 								</label>
 							</form>
 							<button
+								className='button'
 								type='button'
 								onClick={() =>
 									handleCreateUser(createUser, setData, setCreateUser)
@@ -426,7 +441,9 @@ const Dev = () => {
 							<form>
 								<label>
 									Name:
-									<input
+									<CustomInput
+										id='delete-username'
+										name='delete-username'
 										type='text'
 										value={deleteUser.name ?? ''}
 										onChange={e =>
@@ -436,6 +453,7 @@ const Dev = () => {
 								</label>
 							</form>
 							<button
+								className='button'
 								type='button'
 								onClick={() =>
 									handleDeleteUser(deleteUser, setData, setDeleteUser)

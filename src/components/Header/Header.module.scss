@@ -29,6 +29,7 @@
 	gap: 8px;
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 
 	@include media-m {
 		display: none;
@@ -47,6 +48,7 @@
 .icon {
 	height: 16px;
 	width: 16px;
+	max-width: none
 }
 
 .header .clear {
