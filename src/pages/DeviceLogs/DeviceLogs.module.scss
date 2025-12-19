@@ -1,3 +1,5 @@
+@use '../../styles/abstracts/mixins' as *;
+
 .mainContent {
 	padding-bottom: 0;
 }
@@ -53,11 +55,19 @@
 		}
 		padding-left: 36px;
 	}
+	.filterButtons {
+		display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+		button {
+			flex-grow: 1;
+		}
+	}
 }
 .searchWrapper {
 	position: relative;
-	margin-right: 8px;
-	flex: 1;
+	height: fit-content;
+	flex-grow: 1;
 }
 .searchIcon {
 	position: absolute;
@@ -70,6 +80,9 @@
 }
 
 .filters .content {
+	@include media-s {
+		flex-direction: column;
+	}
 	display: flex;
 	gap: 8px;
 	button {
@@ -99,28 +112,40 @@
 		letter-spacing: -0.6px;
 	}
 	.logsTable {
+		tr {
+			display: grid;
+			grid-template-columns: 180px 120.5px 150px auto;
+			border-top: 1px solid var(--color-border);
+			@include media-s {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
 		th,
 		td {
 			text-align: left;
 			padding: 16px;
 			line-height: 20px;
-			&.timestamp {
-				width: 180px;
+			@include media-s {
+				padding: 6px;
+				line-height: 1.2;
+				width: 100%;
 			}
 			&.level {
-				width: 120.5px;
-			}
-			&.source {
-				width: 150px;
+				@include media-s {
+					grid-column: 1/2;
+					grid-row: 2/3;
+				}
 			}
 		}
 		th {
 			height: 48px;
 			color: var(--color-muted);
 			font-weight: 500;
+			@include media-s {
+				height: auto;
+			}
 		}
 		td {
-			border-top: 1px solid var(--color-border);
 			&.timestamp {
 				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 					'Liberation Mono', 'Courier New', monospace;

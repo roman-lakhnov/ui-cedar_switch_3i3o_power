@@ -42,6 +42,9 @@ section {
 	&:hover {
 		box-shadow: var(--shadow-card-hover);
 	}
+	@include media-s {
+		padding: 12px;
+	}
 }
 
 .status {

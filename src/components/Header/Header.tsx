@@ -106,12 +106,14 @@ const Header = () => {
 					</>
 				)}
 			</div>
-			<button
-				className={`button ${styles.burgerMenuButton}`}
-				onClick={toggleMenu}
-			>
-				<Menu className={styles.icon} />
-			</button>
+			{(pageName == 'Device Logs' || pageName == 'Dashboard') && (
+				<button
+					className={`button ${styles.burgerMenuButton}`}
+					onClick={toggleMenu}
+				>
+					<Menu className={styles.icon} />
+				</button>
+			)}
 		</header>
 	)
 }

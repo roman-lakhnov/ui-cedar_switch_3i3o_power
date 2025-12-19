@@ -1,8 +1,7 @@
 import Header from '@/components/Header/Header'
-import styles from './DeviceLogs.module.scss'
-import { useEffect, useState } from 'react'
 import { CircleAlert, Info, Search, TriangleAlert } from 'lucide-react'
-import CustomInput from '@/components/CustomInput/CustomInput'
+import { useEffect, useState } from 'react'
+import styles from './DeviceLogs.module.scss'
 
 type log = {
 	timestamp: string
@@ -139,38 +138,40 @@ const DeviceLogs = () => {
 							/>
 							<Search className={styles.searchIcon} />
 						</div>
-						<button
-							onClick={() => setSelectedFilter('all')}
-							className={`button ${styles.allButton} ${
-								selectedFilter === 'all' ? styles.active : ''
-							}`}
-						>
-							All
-						</button>
-						<button
-							onClick={() => setSelectedFilter('info')}
-							className={`button ${styles.infoButton} ${
-								selectedFilter === 'info' ? styles.active : ''
-							}`}
-						>
-							Info
-						</button>
-						<button
-							onClick={() => setSelectedFilter('warning')}
-							className={`button ${styles.warningButton} ${
-								selectedFilter === 'warning' ? styles.active : ''
-							}`}
-						>
-							Warnings
-						</button>
-						<button
-							onClick={() => setSelectedFilter('error')}
-							className={`button ${styles.errorButton} ${
-								selectedFilter === 'error' ? styles.active : ''
-							}`}
-						>
-							Errors
-						</button>
+						<div className={styles.filterButtons}>
+							<button
+								onClick={() => setSelectedFilter('all')}
+								className={`button ${styles.allButton} ${
+									selectedFilter === 'all' ? styles.active : ''
+								}`}
+							>
+								All
+							</button>
+							<button
+								onClick={() => setSelectedFilter('info')}
+								className={`button ${styles.infoButton} ${
+									selectedFilter === 'info' ? styles.active : ''
+								}`}
+							>
+								Info
+							</button>
+							<button
+								onClick={() => setSelectedFilter('warning')}
+								className={`button ${styles.warningButton} ${
+									selectedFilter === 'warning' ? styles.active : ''
+								}`}
+							>
+								Warnings
+							</button>
+							<button
+								onClick={() => setSelectedFilter('error')}
+								className={`button ${styles.errorButton} ${
+									selectedFilter === 'error' ? styles.active : ''
+								}`}
+							>
+								Errors
+							</button>
+						</div>
 					</div>
 				</section>
 				<section className={`card ${styles.logEntries}`}>
@@ -194,7 +195,7 @@ const DeviceLogs = () => {
 											.slice(0, 19)
 											.replace('T', ' ')}
 									</td>
-									<td className={`${styles.level}`}>
+									<td className={styles.level}>
 										<span
 											className={`status ${styles.levelStatus} ${
 												styles[log.level]

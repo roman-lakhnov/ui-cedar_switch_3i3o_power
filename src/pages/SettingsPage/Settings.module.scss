@@ -1,7 +1,16 @@
+@use '../../styles/abstracts/mixins' as *;
+
 .mainContent {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: auto 1fr;
+	@include media-m {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@include media-s {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
 	.saveMqttButton,
 	.saveSafetyButton,
 	.saveProtectionButton {
@@ -57,6 +66,9 @@
 .mqttSettings {
 	grid-column: 1 / 2;
 	grid-row: 1 / 3;
+	@include media-m {
+		grid-row: 1 / 5;
+	}
 	.dot {
 		background-color: var(--color-info);
 	}
@@ -64,6 +76,10 @@
 .safetyStates {
 	grid-column: 2 / 3;
 	grid-row: 1 / 3;
+	@include media-s {
+		grid-column: auto;
+		grid-row: auto;
+	}
 	.dot {
 		background-color: var(--color-warning);
 	}
