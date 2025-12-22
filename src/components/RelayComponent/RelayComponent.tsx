@@ -1,51 +1,62 @@
-import { memo } from 'react'
+import { usePostRelayState, useRelayState } from '@/hooks/relay'
 import { Power, Zap } from 'lucide-react'
-import type { RelayState } from '@/types'
-import styles from './RelayComponent.module.scss'
 import ToggleButton from '../ToggleButton/ToggleButton'
+import styles from './RelayComponent.module.scss'
+import { formatRelayName } from '@/utils/utils'
 
-interface RelayComponentProps {
-	relay: RelayState
-	onToggle: (id: number) => void
+type RelayComponentProps = {
+	relayName: string
 }
 
-const RelayComponent = memo(({ relay, onToggle }: RelayComponentProps) => {
+export const RelayComponent = ({ relayName }: RelayComponentProps) => {
+	const { data } = useRelayState()
+	const { postNewState, isPending } = usePostRelayState()
+
+	const relayState = data?.[relayName] ?? false
+
+	// TODO fix browser console warning [Violation] 'message' handler took 158ms
+	const handleToggle = () => {
+		if (!data || isPending) return
+		const newData = { ...data}
+		newData[relayName] = !relayState
+		postNewState(newData)
+	}
+
 	return (
 		<div
-			className={`card ${styles.relay} ${relay.isActive ? styles.active : ''}`}
+			className={`card ${styles.relay} ${relayState ? styles.active : ''} ${
+				isPending ? styles.loading : ''
+			}`}
 		>
 			<div className={styles.heading}>
-				{relay.isActive ? (
+				{relayState ? (
 					<Zap className={`${styles.powerIcon} ${styles.active}`} />
 				) : (
 					<Power className={styles.powerIcon} />
 				)}
-				<h3>{relay.name}</h3>
+				<h3>{formatRelayName(relayName)}</h3>
 				<div
 					className={`status ${styles.toggleAction} ${
-						relay.isActive ? styles.active : styles.inactive
+						relayState ? styles.active : styles.inactive
 					}`}
 				>
-					{relay.isActive ? 'ON' : 'OFF'}
+					{relayState ? 'ON' : 'OFF'}
 				</div>
 			</div>
 			<div className={styles.control}>
 				<div
-					className={`${styles.dot} ${relay.isActive ? styles.active : ''}`}
+					className={`${styles.dot} ${relayState ? styles.active : ''}`}
 				></div>
 				<p className={styles.status}>
-					Status: {relay.isActive ? 'Active' : 'Inactive'}
+					Status: {relayState ? 'Active' : 'Inactive'}
 				</p>
 				<ToggleButton
-					state={relay.isActive}
-					toggleAction={() => onToggle(relay.id)}
+					state={relayState}
+					toggleAction={handleToggle}
 					buttonVariant='relay'
+					disabled={isPending}
 				/>
 			</div>
 		</div>
 	)
-})
-
-RelayComponent.displayName = 'RelayComponent'
-
-export default RelayComponent
+}

@@ -4,12 +4,14 @@ interface ToggleButtonProps {
 	state: boolean
 	toggleAction: () => void
 	buttonVariant: 'relay' | 'settings'
+	disabled?: boolean
 }
 
 const ToggleButton = ({
 	state,
 	toggleAction,
-	buttonVariant
+	buttonVariant,
+	disabled = false,
 }: ToggleButtonProps) => {
 	return (
 		<button
@@ -17,6 +19,7 @@ const ToggleButton = ({
 				state ? styles.active : styles.inactive
 			} ${styles[buttonVariant + 'Variant']}`}
 			onClick={toggleAction}
+			disabled={disabled}
 		>
 			<div className={styles.slider}></div>
 		</button>

@@ -49,7 +49,7 @@ const Login = () => {
 								name='username'
 								placeholder='Enter username'
 								inputVariant='login'
-								required={true}
+								// required={true}
 							/>
 						</div>
 						<div className={styles.inputGroup}>
@@ -63,7 +63,7 @@ const Login = () => {
 								name='password'
 								placeholder='Enter password'
 								inputVariant='login'
-								required={true}
+								// required={true}
 							/>
 						</div>
 						<button type='submit' className={`button ${styles.loginButton}`}>
@@ -74,11 +74,8 @@ const Login = () => {
 				<footer className='card'>
 					<div className={styles.status}>
 						<p>
-							<span
-								className={styles.statusIndicator}
-								aria-hidden='true'
-							/>
-							{' '}Device ready for authorization
+							<span className={styles.statusIndicator} aria-hidden='true' />{' '}
+							Device ready for authorization
 						</p>
 					</div>
 					<Link className={styles.backToHome} to='/'>

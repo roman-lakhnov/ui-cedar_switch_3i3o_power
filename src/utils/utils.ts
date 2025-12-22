@@ -145,3 +145,10 @@ export function dhmsToSeconds(dhms: string): number {
 	})
 	return seconds
 }
+
+export function formatRelayName(name: string): string {
+	return name
+		.split(/(?=\d)/)
+		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(' ')
+}

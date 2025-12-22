@@ -1,0 +1,15 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.relays {
+	.content {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 16px;
+		@include media-m {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@include media-s {
+			grid-template-columns: repeat(1, 1fr);
+		}
+	}
+}

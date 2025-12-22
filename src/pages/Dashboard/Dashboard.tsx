@@ -3,24 +3,17 @@ import Header from '@/components/Header/Header'
 import InputComponent from '@/components/InputComponent/InputComponent'
 import MainChart from '@/components/MainChart/MainChart'
 import MonitoringComponent from '@/components/MonitoringComponent/MonitoringComponent'
-import RelayComponent from '@/components/RelayComponent/RelayComponent'
-import type {
-	DigitalInputState,
-	MonitoringParameter,
-	RelayState
-} from '@/types'
+import { RelaysPanel } from '@/components/RelaysPanel/RelaysPanel'
+import type { DigitalInputState, MonitoringParameter } from '@/types'
 import { generateRandomData, secondsToDhms } from '@/utils/utils'
 import { Wifi } from 'lucide-react'
 import { useState } from 'react'
 import styles from './Dashboard.module.scss'
+import { useRelayState } from '@/hooks/relay'
 
 const Dashboard = () => {
-	const [relays, setRelays] = useState<RelayState[]>([
-		{ id: 1, name: `${'Relay'} 1`, isActive: false },
-		{ id: 2, name: `${'Relay'} 2`, isActive: true },
-		{ id: 3, name: `${'Relay'} 3`, isActive: false },
-		{ id: 4, name: `${'Relay'} 4`, isActive: false }
-	])
+	const { data, isLoading, isError, error } = useRelayState()
+
 	const [digitalInputs] = useState<DigitalInputState[]>([
 		{ id: 1, name: `${'Input'} 1`, isActive: true },
 		{ id: 2, name: `${'Input'} 2`, isActive: false },
@@ -74,13 +67,6 @@ const Dashboard = () => {
 		'MAC address': 'AA:BB:CC:DD:EE:FF'
 	}
 
-	const toggleRelay = (id: number) => {
-		setRelays(prev =>
-			prev.map(relay =>
-				relay.id === id ? { ...relay, isActive: !relay.isActive } : relay
-			)
-		)
-	}
 	const toggleMonitoring = (id: number) => {
 		setShownMonitoring(prev =>
 			prev?.id === id
@@ -103,30 +89,21 @@ const Dashboard = () => {
 							<div className='status'>Connected</div>
 						</div>
 						<div className='card'>
-							<h3>Active relays</h3>
-							<div className={styles.activeRelays}>
-								{relays.filter(r => r.isActive).length}
-							</div>
-							<p className={styles.totalRelays}>of {relays.length} relays</p>
-						</div>
-						<div className='card'>
 							<h3>System status</h3>
 							<div className='status'>Ready</div>
 						</div>
+						<div className='card'>
+							<h3>Active relays</h3>
+							<div className={styles.activeRelays}>
+								{data ? Object.values(data).filter(state => state).length : 0}
+							</div>
+							<p className={styles.totalRelays}>
+								of {data ? Object.keys(data).length : 0} relays
+							</p>
+						</div>
 					</div>
 				</section>
-				<section className={styles.relays}>
-					<h2>Relay Control</h2>
-					<div className={styles.content}>
-						{relays.map(relay => (
-							<RelayComponent
-								key={relay.id}
-								relay={relay}
-								onToggle={toggleRelay}
-							/>
-						))}
-					</div>
-				</section>
+				<RelaysPanel />
 				<section className={styles.inputs}>
 					<h2>Digital Inputs</h2>
 					<div className={styles.content}>

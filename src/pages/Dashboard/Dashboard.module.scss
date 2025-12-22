@@ -9,21 +9,6 @@
 	.content {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-	}
-}
-
-.relays {
-	.content {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-	}
-}
-
-.stats,
-.inputs,
-.monitoring,
-.relays {
-	.content {
 		gap: 16px;
 		@include media-m {
 			grid-template-columns: repeat(2, 1fr);

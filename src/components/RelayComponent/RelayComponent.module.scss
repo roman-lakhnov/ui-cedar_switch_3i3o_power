@@ -2,6 +2,10 @@
 	&.active {
 		border-color: var(--color-primary);
 	}
+	&.loading {
+		opacity: 0.5;
+		pointer-events: none;
+	}
 	.heading,
 	.control {
 		display: flex;
