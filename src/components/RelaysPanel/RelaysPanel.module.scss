@@ -12,4 +12,14 @@
 			grid-template-columns: repeat(1, 1fr);
 		}
 	}
+	.relaysStatus {
+		&.loading {
+			background-color: var(--color-warning);
+			border-color: var(--color-warning);
+		}
+		&.failed {
+			background-color: var(--color-danger);
+			border-color: var(--color-danger);
+		}
+	}
 }

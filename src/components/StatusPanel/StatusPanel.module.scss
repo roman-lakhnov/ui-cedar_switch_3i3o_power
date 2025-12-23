@@ -1,0 +1,72 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.statusPanel {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 16px;
+	@include media-m {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@include media-s {
+		grid-template-columns: repeat(1, 1fr);
+	}
+	h3 {
+		margin-bottom: 8px;
+	}
+	.systemIcon,
+	.wifiIcon,
+	.joystickIcon {
+		display: inline-block;
+		margin-right: 8px;
+		vertical-align: middle;
+		height: 16px;
+		width: 16px;
+		color: var(--color-primary);
+
+		&.loading {
+			color: var(--color-warning);
+		}
+		&.failed {
+			color: var(--color-danger);
+		}
+		&.disabled {
+			color: var(--color-muted);
+		}
+		&.rebootRequired {
+			color: var(--color-purple);
+		}
+	}
+	.systemStatus,
+	.mqttStatus,
+	.activeRelaysStatus {
+		&.loading {
+			background-color: var(--color-warning);
+			border-color: var(--color-warning);
+		}
+		&.failed {
+			background-color: var(--color-danger);
+			border-color: var(--color-danger);
+		}
+		&.disabled {
+			color: var(--color-text);
+			background-color: var(--color-grey);
+			border-color: var(--color-grey);
+		}
+		&.rebootRequired {
+			background-color: var(--color-purple);
+			border-color: var(--color-purple);
+		}
+	}
+	.activeRelays {
+		color: var(--color-text);
+		font-size: 24px;
+		font-weight: 700;
+		line-height: 30px;
+	}
+	.totalRelays {
+		color: var(--color-muted);
+		margin-left: 4px;
+		font-size: 12px;
+		line-height: 16px;
+	}
+}

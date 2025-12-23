@@ -1,4 +1,4 @@
-import { usePostRelayState, useRelayState } from '@/hooks/relay'
+import { usePostRelayState, useRelayState } from '@/hooks/relayState'
 import { Power, Zap } from 'lucide-react'
 import ToggleButton from '../ToggleButton/ToggleButton'
 import styles from './RelayComponent.module.scss'
@@ -17,7 +17,7 @@ export const RelayComponent = ({ relayName }: RelayComponentProps) => {
 	// TODO fix browser console warning [Violation] 'message' handler took 158ms
 	const handleToggle = () => {
 		if (!data || isPending) return
-		const newData = { ...data}
+		const newData = { ...data }
 		newData[relayName] = !relayState
 		postNewState(newData)
 	}

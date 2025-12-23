@@ -6,14 +6,12 @@ import MonitoringComponent from '@/components/MonitoringComponent/MonitoringComp
 import { RelaysPanel } from '@/components/RelaysPanel/RelaysPanel'
 import type { DigitalInputState, MonitoringParameter } from '@/types'
 import { generateRandomData, secondsToDhms } from '@/utils/utils'
-import { Wifi } from 'lucide-react'
 import { useState } from 'react'
+
 import styles from './Dashboard.module.scss'
-import { useRelayState } from '@/hooks/relay'
+import { StatusPanel } from '@/components/StatusPanel/StatusPanel'
 
 const Dashboard = () => {
-	const { data, isLoading, isError, error } = useRelayState()
-
 	const [digitalInputs] = useState<DigitalInputState[]>([
 		{ id: 1, name: `${'Input'} 1`, isActive: true },
 		{ id: 2, name: `${'Input'} 2`, isActive: false },
@@ -79,30 +77,7 @@ const Dashboard = () => {
 		<div className='container'>
 			<Header />
 			<main className={styles.dashboard}>
-				<section className={styles.stats}>
-					<div className={styles.content}>
-						<div className='card'>
-							<h3>
-								<Wifi className={styles.wifiIcon} />
-								MQTT Connection
-							</h3>
-							<div className='status'>Connected</div>
-						</div>
-						<div className='card'>
-							<h3>System status</h3>
-							<div className='status'>Ready</div>
-						</div>
-						<div className='card'>
-							<h3>Active relays</h3>
-							<div className={styles.activeRelays}>
-								{data ? Object.values(data).filter(state => state).length : 0}
-							</div>
-							<p className={styles.totalRelays}>
-								of {data ? Object.keys(data).length : 0} relays
-							</p>
-						</div>
-					</div>
-				</section>
+				<StatusPanel />
 				<RelaysPanel />
 				<section className={styles.inputs}>
 					<h2>Digital Inputs</h2>
