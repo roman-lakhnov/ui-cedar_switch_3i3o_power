@@ -10,7 +10,7 @@ export default defineConfig({
 		port: 5173,
 		proxy: {
 			'/api': {
-				target: 'http://192.168.88.76:8080', // адрес твоего backend сервера
+				target: 'http://192.168.88.48:80', // адрес твоего backend сервера
 				changeOrigin: true,
 				secure: false,
 			}

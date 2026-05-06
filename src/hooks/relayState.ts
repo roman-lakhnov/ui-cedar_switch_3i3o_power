@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { getRelayState, postRelayState, type relayState } from '../api/client'
+import { getMatterState, getRelayState, postRelayState, type relayState } from '../api/client'
 
 export function useRelayState() {
 	return useQuery({
@@ -7,6 +7,14 @@ export function useRelayState() {
 		queryFn: getRelayState
 	})
 }
+
+export function useMatterState() {
+	return useQuery({
+		queryKey: ['matterState'],
+		queryFn: getMatterState
+	})
+}
+
 
 export function usePostRelayState() {
 
