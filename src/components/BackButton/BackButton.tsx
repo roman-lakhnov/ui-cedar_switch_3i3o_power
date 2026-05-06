@@ -1,6 +1,7 @@
 import { ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import styles from './BackButton.module.scss'
+import githubIcon from '@/assets/icons/github.svg'
 
 type BackButtonProps = {
 	pageName: string
@@ -17,7 +18,7 @@ const BackButton = ({ pageName }: BackButtonProps) => {
 					className={`button ${styles.logo}`}
 				>
 					<img
-						src='/src/assets/icons/github.svg'
+						src={githubIcon}
 						alt='gitLogo'
 						className={styles.icon}
 					/>
